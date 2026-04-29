@@ -25,8 +25,23 @@ d  detach
 t  big clock
 ?  list shortcuts
 :  prompt
+[  navigate using arraw keys, page up/down or mouse wheel (q to exit)
 
-to watch gpu usage continously:
+Permanent tmux scrollable fix:
+```
+Open or create tmux config file:
+nano ~/.tmux.conf
+
+Add this line: set -g mouse on
+Save and exit: ctrl+x, y, enter
+
+Reload configurations:
+inside a tmux session, press ctrl+b, then :
+
+and then type: source-file ~/.tmux.conf
+```
+
+To watch gpu usage continously:
 watch -n 1 nvidia-smi
 
 to count the lines in file
@@ -50,6 +65,9 @@ scp -r /data/rohan/VIT/results/predicted_scad rovish@172.23.131.44:/Users/rovish
 
 If I am in remote machine and want to copy a file from my mac to remote machine:
 scp rovish@172.23.131.44:/Users/rovish/Downloads/train.py /home/rohan/VIT/
+
+To copy multiple files and folders:
+scp -r ~/Desktop/VIT/dataset_build/{main.py,test.py,gt_stl} rohan@172.27.21.156:/data/rohan/VIT/
 
 ls -d ./dataset/batch_depth_maps/*/ | shuf -n 287 | xargs -I {} mv {} ./dataset/data_for_model/training_data
 ls -d ./dataset/batch_depth_maps/*/ : Lists only the directories (-d) within that path.
